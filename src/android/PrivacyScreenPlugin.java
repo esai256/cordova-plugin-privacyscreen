@@ -16,8 +16,8 @@ import android.view.WindowManager;
 import android.util.Log;
 
 /**
- * This class sets the FLAG_SECURE flag on the window to make the app
- *  private when shown in the task switcher
+ * This class sets the FLAG_SECURE flag on the window while it is in the
+ * background to make the app private when shown in the task switcher
  */
 public class PrivacyScreenPlugin extends CordovaPlugin {
 
@@ -27,15 +27,27 @@ public class PrivacyScreenPlugin extends CordovaPlugin {
     Activity activity = cordova.getActivity();
   }
 
+  @Override
+  public fun onPause() {
+    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    super.onPause();
+  }
+
+  @Override
+  public override onResume() {
+    super.onResume();
+    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+  }
+
   private boolean isDebug(Activity activity) {
     try {
       Class<?> buildConfigClass = Class.forName(activity.getPackageName() + ".BuildConfig");
-      return (boolean)buildConfigClass.getField("DEBUG").get(null);
-    }
-    catch (Exception e) {
+
+      return (boolean) buildConfigClass.getField("DEBUG").get(null);
+    } catch (Exception e) {
       Log.w("PrivacyScreenPlugin", e);
+
       return false;
     }
   }
 }
-
