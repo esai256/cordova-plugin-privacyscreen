@@ -28,14 +28,14 @@ public class PrivacyScreenPlugin extends CordovaPlugin {
   }
 
   @Override
-  public fun onPause() {
+  public void onPause(boolean multitasking) {
     activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    super.onPause();
+    super.onPause(multitasking);
   }
 
   @Override
-  public override onResume() {
-    super.onResume();
+  public void onResume(boolean multitasking) {
+    super.onResume(multitasking);
     activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
   }
 
