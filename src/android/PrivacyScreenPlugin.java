@@ -20,23 +20,18 @@ import android.util.Log;
  * background to make the app private when shown in the task switcher
  */
 public class PrivacyScreenPlugin extends CordovaPlugin {
-
-  @Override
-  public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-    super.initialize(cordova, webView);
-    Activity activity = cordova.getActivity();
-  }
-
   @Override
   public void onPause(boolean multitasking) {
-    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    Log.d("PAUSE");
+    cordova.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     super.onPause(multitasking);
   }
 
   @Override
   public void onResume(boolean multitasking) {
+    Log.d("RESUME");
     super.onResume(multitasking);
-    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+    cordova.getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
   }
 
   private boolean isDebug(Activity activity) {
