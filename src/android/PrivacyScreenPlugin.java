@@ -25,10 +25,6 @@ public class PrivacyScreenPlugin extends CordovaPlugin {
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
     Activity activity = cordova.getActivity();
-
-    if (!isDebug(activity)) {
-      activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    }
   }
 
   private boolean isDebug(Activity activity) {

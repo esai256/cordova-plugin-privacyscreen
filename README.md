@@ -5,7 +5,9 @@ Both iOS (as of iOS 7) and Android have app switchers that display a screenshot 
 
 This is a lovely feature for most apps, but if your app displays sensitive information this is a possible privacy risk.
 
-This plugin flags your app so that it doesn't show your users' sensitive data in the task switcher. It sets the [FLAG_SECURE](http://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE) flag in Android (which also prevents manual screenshots from being taken) and hides the window in iOS.
+This plugin flags your app so that it doesn't show your users' sensitive data in the task switcher. 
+
+Other than the fork source it does **not** set the [FLAG_SECURE](http://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_SECURE) flag in Android (which also prevents manual screenshots from being taken).
 
 On iOS this plugin will try to show your splashscreen in the app switcher. It will search for splashscreens prefixed by `Default` or the value of the key `UILaunchImageFile` in your .plist file.
 If it fails to find a splashscreen for a specific device or orientation (portrait or landscape), a black screen is shown instead.
